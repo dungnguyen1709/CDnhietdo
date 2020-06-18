@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+<h3>Temperature Converter</h3>
+<h5>Type a value in the Fahrenheit field to convert the value to Celcius:</h5>
+<select id="selectTemp" onchange="tempChanged()" style="width: 100px">
+    <option value="F">F --> C</option>
+    <option value="C">C --> F</option>
+</select>
+</form>
+<br/>
+<fieldset style="width: 350px">
+    <table>
+        <tr>
+            <td width="120px">
+                <span id="spaninput">Fahrenheit :</span>
+            </td>
+            <td>
+                <input type="number" id="inputTemp" placeholder="insert information" oninput="convertAndShow(this.value)">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span id="spanout">Celcius :</span>
+            </td>
+            <td>
+                <span id="output"></span>
+            </td>
+        </tr>
+    </table>
+
+</fieldset>
+<script>
+    function tempChanged() {
+        let value = document.getElementById("inputTemp").value;
+        let spanIn = document.getElementById("spaninput").innerHTML;
+        let spanOut = document.getElementById("spanout").innerHTML;
+        let typeTemp = document.getElementById("selectTemp").value;
+
+        if (typeTemp === 'F') {
+            spanIn = "Fahrenheit";
+            spanOut = "Celcius";
+            let inputT = parseFloat(value);
+            let outputTemp = (inputT - 32) / 1.8;
+            document.getElementById("output").innerHTML = outputTemp;
+        } else if (typeTemp === 'C') {
+            spanIn = "Celcius";
+            spanOut = "Fahrenheit";
+            let inputT = parseFloat(value);
+            let outputTemp = inputT * 1.8 + 32;
+            document.getElementById("output").innerHTML = outputTemp;
+        }
+
+    }
+
+    function convertAndShow(value) {
+        let typeTemp = document.getElementById("selectTemp").value;
+        if (typeTemp === 'F') {
+            let inputT = parseFloat(value);
+            let outputTemp = (inputT - 32) / 1.8;
+            document.getElementById("output").innerHTML = outputTemp;
+        } else if (typeTemp === 'C') {
+            let inputT = parseFloat(value);
+            let outputTemp = inputT * 1.8 + 32;
+            document.getElementById("output").innerHTML = outputTemp;
+        }
+
+    }
+
+
+</script>
+</body>
+</html>
